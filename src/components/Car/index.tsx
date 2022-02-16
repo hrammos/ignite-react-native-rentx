@@ -20,26 +20,30 @@ type TRent = {
   price: number
 };
 
-type TProps = {
+type TCar = {
   brand: string
   name: string
   rent: TRent
   thumbnail: string
+}
+
+type TProps = {
+  data: TCar  
 };
 
 export const Car = (props: TProps) => {
-  const { brand, name, rent, thumbnail } = props;
+  const { data } = props;
 
   return (
     <Container>
       <Details>
-        <Brand>{brand}</Brand>
-        <Name>{name}</Name>
+        <Brand>{data.brand}</Brand>
+        <Name>{data.name}</Name>
 
         <About>
           <Rent>
-            <Period>{rent.period}</Period>
-            <Price>{`R$ ${rent.price}`}</Price>
+            <Period>{data.rent.period}</Period>
+            <Price>{`R$ ${data.rent.price}`}</Price>
           </Rent>
 
           <Type>
@@ -49,7 +53,7 @@ export const Car = (props: TProps) => {
       </Details>
 
       <CarImage 
-        source={{ uri: thumbnail }} 
+        source={{ uri: data.thumbnail }} 
         resizeMode="contain"
       />
 

@@ -10,6 +10,7 @@ import {
   Header,
   HeaderContent,
   TotalCars,
+  CarList,
 } from './styles';
 
 export const Home = () => {
@@ -55,18 +56,10 @@ export const Home = () => {
         </HeaderContent>
       </Header>
 
-      <Car 
-        name={carTestOne.name}
-        brand={carTestOne.brand}
-        rent={carTestOne.rent}
-        thumbnail={carTestOne.thumbnail}
-      />
-
-      <Car 
-        name={carTestTwo.name}
-        brand={carTestTwo.brand}
-        rent={carTestTwo.rent}
-        thumbnail={carTestTwo.thumbnail}
+      <CarList 
+        data={[1,2,3,4,5,6,7]}
+        keyExtractor={item=> String(item)}
+        renderItem={({ item }) => <Car data={carTestOne} />}
       />
 
     </Container>

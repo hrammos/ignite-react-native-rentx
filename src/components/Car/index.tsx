@@ -15,18 +15,31 @@ import {
   CarImage,
 } from './styles';
 
-export const Car = () => {
+type TRent = {
+  period: string
+  price: number
+};
+
+type TProps = {
+  brand: string
+  name: string
+  rent: TRent
+  thumbnail: string
+};
+
+export const Car = (props: TProps) => {
+  const { brand, name, rent, thumbnail } = props;
 
   return (
     <Container>
       <Details>
-        <Brand>Audi</Brand>
-        <Name>RS 5 Coupé</Name>
+        <Brand>{brand}</Brand>
+        <Name>{name}</Name>
 
         <About>
           <Rent>
-            <Period>Ao dia</Period>
-            <Price>R$ 120</Price>
+            <Period>{rent.period}</Period>
+            <Price>{`R$ ${rent.price}`}</Price>
           </Rent>
 
           <Type>
@@ -35,7 +48,10 @@ export const Car = () => {
         </About>
       </Details>
 
-      <CarImage source={{ uri: '' }} />
+      <CarImage 
+        source={{ uri: thumbnail }} 
+        resizeMode="contain"
+      />
 
     </Container>
   );

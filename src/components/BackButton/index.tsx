@@ -19,9 +19,8 @@ export const BackButton = (props: IProps) => {
       <MaterialIcons 
         name="chevron-left"
         size={24}
-        color={color ? color : 'red'}
+        color={color ? color : colors.text}
       />
-
     </Container>
   );
 }

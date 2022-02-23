@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { BackButton } from '../../components';
+import { BackButton, ImageSlider } from '../../components';
 
 import { 
   Container,
-  Header
+  Header,
+  CarImages,
 } from './styles';
 
 export const CarDetails = () => {
@@ -15,6 +15,9 @@ export const CarDetails = () => {
         <BackButton onPress={() => {}} />
       </Header>
 
+      <CarImages>
+        <ImageSlider imagesUrl={['https://freepngimg.com/thumb/audi/35227-5-audi-rs5-red.png']} />
+      </CarImages>
     </Container>
   );
 }

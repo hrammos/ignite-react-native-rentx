@@ -1,5 +1,4 @@
 import React from 'react';
-import { BackButton, ImageSlider, Accessory } from '../../components';
 
 import SpeedSvg from '../../assets/speed.svg';
 import AccelerationSvg from '../../assets/acceleration.svg';
@@ -7,6 +6,13 @@ import ForceSvg from '../../assets/force.svg';
 import GasolineSvg from '../../assets/gasoline.svg';
 import ExchangeSvg from '../../assets/exchange.svg';
 import PeopleSvg from '../../assets/people.svg';
+
+import { 
+  BackButton, 
+  ImageSlider, 
+  Accessory,
+  Button,
+} from '../../components';
 
 import { 
   Container,
@@ -22,6 +28,7 @@ import {
   Price,
   Accessories,
   About,
+  Footer,
 } from './styles';
 
 export const CarDetails = () => {
@@ -64,6 +71,10 @@ export const CarDetails = () => {
           É um belíssimo carro para quem gosta de acelerar.
         </About>
       </Content>
+
+      <Footer>
+        <Button title="Confirmar" />
+      </Footer>
     </Container>
   );
 }

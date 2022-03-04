@@ -4,7 +4,11 @@ import { useTheme } from 'styled-components';
 
 import ArrowSvg from '../../assets/arrow.svg';
 
-import { BackButton, Button } from '../../components';
+import { 
+  BackButton, 
+  Button, 
+  Calendar 
+} from '../../components';
 
 import { 
   Container, 
@@ -62,7 +66,7 @@ export const Scheduling = () => {
       </Header>
 
       <Content>
-
+        <Calendar />
       </Content>
 
       <Footer>

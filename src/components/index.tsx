@@ -4,3 +4,4 @@ export { ImageSlider } from './ImageSlider';
 export { Accessory } from './Accessory';
 export { Button } from './Button';
 export { Calendar } from './Calendar';
+export { ConfirmButton } from './ConfirmButton';

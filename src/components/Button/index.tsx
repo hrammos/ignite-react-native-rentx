@@ -11,7 +11,6 @@ type TProps = {
 export const Button = (props: TProps) => {
   const { title, color, onPress, ...rest } = props;
 
-
   return (
     <Container {...rest} color={color}>
       <Title>{title}</Title>

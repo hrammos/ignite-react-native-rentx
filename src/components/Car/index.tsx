@@ -1,4 +1,5 @@
 import React from 'react';
+import { RectButtonProps } from 'react-native-gesture-handler';
 
 import GasolineSvg from '../../assets/gasoline.svg'
 
@@ -27,15 +28,15 @@ type TCar = {
   thumbnail: string
 }
 
-type TProps = {
+type TProps = RectButtonProps & {
   data: TCar  
 };
 
 export const Car = (props: TProps) => {
-  const { data } = props;
+  const { data, ...rest } = props;
 
   return (
-    <Container>
+    <Container {...rest}>
       <Details>
         <Brand>{data.brand}</Brand>
         <Name>{data.name}</Name>

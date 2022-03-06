@@ -13,7 +13,6 @@ export const Content = styled.View`
   justify-content: center;
   align-items: center;
   
-  min-height: ${RFValue(180)}px;
   padding-bottom: 40px;
 `;
 

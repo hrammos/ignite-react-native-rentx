@@ -1,15 +1,15 @@
 import React from 'react';
+import { RectButtonProps } from 'react-native-gesture-handler';
 
 import { Container, Title } from './styles';
 
-type TProps = {
+type TProps = RectButtonProps & {
   title: string;
   color?: string;
-  onPress?: () => void;
 };
 
 export const Button = (props: TProps) => {
-  const { title, color, onPress, ...rest } = props;
+  const { title, color, ...rest } = props;
 
   return (
     <Container {...rest} color={color}>

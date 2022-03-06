@@ -2,6 +2,11 @@ import React from 'react';
 import { Feather } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useTheme } from 'styled-components';
+import { 
+  useNavigation,
+  NavigationProp,
+  ParamListBase, 
+} from '@react-navigation/native';
 
 import SpeedSvg from '../../assets/speed.svg';
 import AccelerationSvg from '../../assets/acceleration.svg';
@@ -46,6 +51,9 @@ import {
 export const SchedulingDetails = () => {
 
   const { colors } = useTheme();
+  const { navigate }: NavigationProp<ParamListBase> = useNavigation();
+
+  const handleConfirmRental = () => navigate('SchedulingComplete');
 
   return (
     <Container>
@@ -115,7 +123,11 @@ export const SchedulingDetails = () => {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button 
+          title="Alugar agora"
+          color={colors.success} 
+          onPress={handleConfirmRental}
+        />
       </Footer>
     </Container>
   );

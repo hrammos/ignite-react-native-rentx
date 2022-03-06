@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+  useNavigation,
+  NavigationProp,
+  ParamListBase,
+} from '@react-navigation/native';
 
 import SpeedSvg from '../../assets/speed.svg';
 import AccelerationSvg from '../../assets/acceleration.svg';
@@ -32,6 +37,9 @@ import {
 } from './styles';
 
 export const CarDetails = () => {
+  const { navigate }: NavigationProp<ParamListBase> = useNavigation();
+
+  const handleConfirmRental = () => navigate('Scheduling');
 
   return (
     <Container>
@@ -73,7 +81,10 @@ export const CarDetails = () => {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button 
+          title="Escolher período do aluguel" 
+          onPress={handleConfirmRental}
+        />
       </Footer>
     </Container>
   );

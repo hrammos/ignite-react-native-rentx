@@ -1,6 +1,6 @@
 import React from 'react';
 import { RectButtonProps } from 'react-native-gesture-handler';
-
+import { ICarDTO } from '../../dtos/CarDTO'
 import GasolineSvg from '../../assets/gasoline.svg'
 
 import { 
@@ -16,20 +16,8 @@ import {
   CarImage,
 } from './styles';
 
-type TRent = {
-  period: string
-  price: number
-};
-
-type TCar = {
-  brand: string
-  name: string
-  rent: TRent
-  thumbnail: string
-}
-
 type TProps = RectButtonProps & {
-  data: TCar  
+  data: ICarDTO  
 };
 
 export const Car = (props: TProps) => {

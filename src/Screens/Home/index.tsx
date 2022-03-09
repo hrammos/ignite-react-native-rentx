@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import {
@@ -8,7 +8,9 @@ import {
 } from '@react-navigation/native';
 
 import Logo from '../../assets/logo.svg';
-import { Car } from '../../components';
+import { Car, Loading } from '../../components';
+import { api } from '../../services/api';
+import { ICarDTO } from '../../dtos/CarDTO'
 
 import { 
   Container, 
@@ -19,29 +21,30 @@ import {
 } from './styles';
 
 export const Home = () => {
+  const [cars, setCars] = useState<ICarDTO[]>([]);
+  const [loading, setLoading] = useState(true);
+
   const { navigate }: NavigationProp<ParamListBase> = useNavigation();
 
-  const carTestOne = {
-    brand: 'Audi',
-    name: 'RS 5 Coupé',
-    rent: {
-      period: 'AO DIA',
-      price: 120
-    },
-    thumbnail: 'https://freepngimg.com/thumb/audi/35227-5-audi-rs5-red.png'
-  }
-  
-  const carTestTwo = {
-    brand: 'Porsche',
-    name: 'Panamera',
-    rent: {
-      period: 'AO DIA',
-      price: 340
-    },
-    thumbnail: 'https://www.pngkit.com/png/full/237-2375888_porsche-panamera-s.png'
-  }
-
   const handleCarDetails = () => navigate('CarDetails');
+
+  useEffect(() => {
+    const fetchCars = async () => {
+      try {
+        const response = await api.get('/cars');
+
+        setCars(response.data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCars();
+  }, []);
+
+  if (loading) return <Loading />
    
   return (
     <Container>
@@ -65,10 +68,10 @@ export const Home = () => {
       </Header>
 
       <CarList 
-        data={[1,2,3,4,5,6,7]}
-        keyExtractor={item=> String(item)}
+        data={cars}
+        keyExtractor={item=> item.id}
         renderItem={({ item }) => 
-          <Car data={carTestOne} onPress={handleCarDetails} />
+          <Car data={item} onPress={handleCarDetails} />
         }
       />
     </Container>

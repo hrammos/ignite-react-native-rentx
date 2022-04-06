@@ -10,12 +10,12 @@ interface IProps extends BorderlessButtonProps {
 }
 
 export const BackButton = (props: IProps) => {
-  const { color } = props;
+  const { color, ...rest } = props;
   
   const { colors } = useTheme(); 
 
   return (
-    <Container>
+    <Container {...rest}>
       <MaterialIcons 
         name="chevron-left"
         size={24}

@@ -51,14 +51,15 @@ import {
 export const SchedulingDetails = () => {
 
   const { colors } = useTheme();
-  const { navigate }: NavigationProp<ParamListBase> = useNavigation();
+  const navigation: NavigationProp<ParamListBase> = useNavigation();
 
-  const handleConfirmRental = () => navigate('SchedulingComplete');
+  const handleConfirmRental = () => navigation.navigate('SchedulingComplete');
+  const handleBack = () => navigation.goBack();
 
   return (
     <Container>
       <Header>
-        <BackButton onPress={() => {}} />
+        <BackButton onPress={handleBack} />
       </Header>
 
       <CarImages>

@@ -26,7 +26,7 @@ export const Home = () => {
 
   const { navigate }: NavigationProp<ParamListBase> = useNavigation();
 
-  const handleCarDetails = () => navigate('CarDetails');
+  const handleCarDetails = (car: ICarDTO) => navigate('CarDetails', { car });
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -71,7 +71,7 @@ export const Home = () => {
         data={cars}
         keyExtractor={item=> item.id}
         renderItem={({ item }) => 
-          <Car data={item} onPress={handleCarDetails} />
+          <Car data={item} onPress={() => handleCarDetails(item)} />
         }
       />
     </Container>

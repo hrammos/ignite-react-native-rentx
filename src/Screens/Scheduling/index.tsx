@@ -29,9 +29,10 @@ import {
 
 export const Scheduling = () => {
   const { colors } = useTheme();
-  const { navigate }: NavigationProp<ParamListBase> = useNavigation();
+  const navigation: NavigationProp<ParamListBase> = useNavigation();
 
-  const handleConfirmRental = () => navigate('SchedulingDetails');
+  const handleConfirmRental = () => navigation.navigate('SchedulingDetails');
+  const handleBack = () => navigation.goBack();
 
   return (
     <Container>
@@ -44,7 +45,7 @@ export const Scheduling = () => {
         
         <BackButton 
           color={colors.shape}
-          onPress={() => {}} 
+          onPress={handleBack} 
         />
 
         <Title>

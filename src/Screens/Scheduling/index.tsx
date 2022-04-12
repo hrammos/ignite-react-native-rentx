@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
 import {
@@ -14,6 +14,8 @@ import {
   Button, 
   Calendar 
 } from '../../components';
+import { IDayProps, IMarkedDateProps } from '../../components/Calendar';
+import { generateInterval } from '../../components/Calendar/generateInterval';
 
 import { 
   Container, 
@@ -27,12 +29,34 @@ import {
   Footer,
 } from './styles';
 
+
 export const Scheduling = () => {
+  const [lastSelectedDate, setLastSelectedDate] = useState<IDayProps>({} as IDayProps);
+  const [markedDates, setMarkedDates] = useState<IMarkedDateProps>({} as IMarkedDateProps);
+
   const { colors } = useTheme();
   const navigation: NavigationProp<ParamListBase> = useNavigation();
 
   const handleConfirmRental = () => navigation.navigate('SchedulingDetails');
+  
   const handleBack = () => navigation.goBack();
+
+  const handleChangeDate = (date: IDayProps) => {
+    
+    let start = !lastSelectedDate.timestamp ? date : lastSelectedDate;
+    let end = date;
+    
+    if(start.timestamp > end.timestamp) {
+      start = end;
+      end = start;
+    }
+    
+    setLastSelectedDate(end);
+    
+    const interval = generateInterval(start, end);
+    
+    setMarkedDates(interval);
+  }
 
   return (
     <Container>
@@ -74,7 +98,10 @@ export const Scheduling = () => {
       </Header>
 
       <Content>
-        <Calendar />
+        <Calendar 
+          markedDates={markedDates}
+          onDayPress={handleChangeDate}
+        />
       </Content>
 
       <Footer>

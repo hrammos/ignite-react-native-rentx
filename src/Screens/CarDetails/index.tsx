@@ -33,7 +33,7 @@ import {
 } from './styles';
 
 type TParams = {
-  car: ICarDTO
+  car: ICarDTO;
 }
 
 export const CarDetails = () => {
@@ -75,7 +75,6 @@ export const CarDetails = () => {
               name={accessory.name} 
               icon={getAccessoryIcon(accessory.type)} 
             />
-
           ))}
         </Accessories>
 

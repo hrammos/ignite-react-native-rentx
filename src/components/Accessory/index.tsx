@@ -5,7 +5,7 @@ import { Container, Name } from './styles';
 
 type TProps = {
   name: string;
-  icon: React.FC<SvgProps>
+  icon: React.FC<SvgProps>;
 };
 
 export const Accessory = (props: TProps) => {

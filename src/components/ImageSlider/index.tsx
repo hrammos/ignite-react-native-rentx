@@ -9,7 +9,7 @@ import {
 } from './styles';
 
 type TProps = {
-  imagesUrl: string[]
+  imagesUrl: string[];
 }
 
 export const ImageSlider = (props: TProps) => {

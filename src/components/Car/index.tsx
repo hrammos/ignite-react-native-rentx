@@ -17,7 +17,7 @@ import {
 } from './styles';
 
 type TProps = RectButtonProps & {
-  data: ICarDTO  
+  data: ICarDTO;
 };
 
 export const Car = (props: TProps) => {

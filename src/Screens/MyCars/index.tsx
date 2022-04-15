@@ -66,8 +66,6 @@ export const MyCars = () => {
     fetchCars();
   }, []);
 
-  if (loading) return <Loading />
-
   return (
     <Container>
       <Header>
@@ -91,36 +89,38 @@ export const MyCars = () => {
         <SubTitle>Conforto, segurança e praticidade.</SubTitle>
       </Header>
 
-      <Content>
-        <Appointments>
-          <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>
-          <AppointmentsQuantity>{cars.length}</AppointmentsQuantity>
-        </Appointments>
+      {loading ? <Loading /> : (
+        <Content>
+          <Appointments>
+            <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>
+            <AppointmentsQuantity>{cars.length}</AppointmentsQuantity>
+          </Appointments>
 
-        <FlatList 
-          data={cars}
-          keyExtractor={item => item.id}
-          showsVerticalScrollIndicator={false}
-          renderItem={({item}) => (
-            <CarWrapper>
-              <Car data={item.car} />
-              <CarFooter>
-                <CarFooterTitle>Período</CarFooterTitle>
-                <CarFooterPeriod>
-                  <CarFooterDate>{item.startDate}</CarFooterDate>
-                  <AntDesign 
-                    name="arrowright" 
-                    size={20}
-                    color={colors.title}
-                    style={{ marginHorizontal: 10 }}
-                  />
-                  <CarFooterDate>{item.endDate}</CarFooterDate>
-                </CarFooterPeriod>
-              </CarFooter>
-            </CarWrapper>
-          )}
-        />
-      </Content>
+          <FlatList 
+            data={cars}
+            keyExtractor={item => item.id}
+            showsVerticalScrollIndicator={false}
+            renderItem={({item}) => (
+              <CarWrapper>
+                <Car data={item.car} />
+                <CarFooter>
+                  <CarFooterTitle>Período</CarFooterTitle>
+                  <CarFooterPeriod>
+                    <CarFooterDate>{item.startDate}</CarFooterDate>
+                    <AntDesign 
+                      name="arrowright" 
+                      size={20}
+                      color={colors.title}
+                      style={{ marginHorizontal: 10 }}
+                    />
+                    <CarFooterDate>{item.endDate}</CarFooterDate>
+                  </CarFooterPeriod>
+                </CarFooter>
+              </CarWrapper>
+            )}
+          />
+        </Content>
+      )}
     </Container>
   );
 }

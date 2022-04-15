@@ -49,8 +49,6 @@ export const Home = () => {
 
     fetchCars();
   }, []);
-
-  if (loading) return <Loading />
    
   return (
     <Container>
@@ -68,18 +66,20 @@ export const Home = () => {
           />
 
           <TotalCars>
-            Total de 12 carros
+            {`Total de ${cars.length} carros`}
           </TotalCars>
         </HeaderContent>
       </Header>
 
-      <CarList 
-        data={cars}
-        keyExtractor={item=> item.id}
-        renderItem={({ item }) => 
-          <Car data={item} onPress={() => handleCarDetails(item)} />
-        }
-      />
+      {loading ? <Loading /> : (
+        <CarList 
+          data={cars}
+          keyExtractor={item=> item.id}
+          renderItem={({ item }) => 
+            <Car data={item} onPress={() => handleCarDetails(item)} />
+          }
+        />
+      )}
 
       <MyCarsButton onPress={handleOpenMyCars}>
         <Ionicons 

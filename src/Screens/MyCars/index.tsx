@@ -4,7 +4,6 @@ import {
   useNavigation,
   NavigationProp,
   ParamListBase,
-  useRoute,
 } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons'
 import { useTheme } from 'styled-components';

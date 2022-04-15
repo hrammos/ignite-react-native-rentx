@@ -60,7 +60,7 @@ interface IRentalPeriod {
 
 export const SchedulingDetails = () => {
   const [rentalPeriod, setRentalPeriod] = useState<IRentalPeriod>({} as IRentalPeriod);
-
+  const [loading, setLoading] = useState(false);
 
   const { colors } = useTheme();
   const navigation: NavigationProp<ParamListBase> = useNavigation();
@@ -71,10 +71,16 @@ export const SchedulingDetails = () => {
   const rentTotal = Number(dates.length * car.rent.price);
 
   const handleConfirmRental = async () => {
+    setLoading(true);
+
     const responseSchedules = await api.get(`/schedules_bycars/${car.id}`);
 
-    if (!responseSchedules) return
-    
+    if (!responseSchedules) {
+      setLoading(false);
+      
+      return
+    }
+
     const unavailable_dates = [
       ...responseSchedules.data.unavailable_dates,
       ...dates,
@@ -93,8 +99,9 @@ export const SchedulingDetails = () => {
     });
 
     if (!response) {
-      Alert.alert('Não foi possível confirmar o agendamento.');
+      setLoading(false);
 
+      Alert.alert('Não foi possível confirmar o agendamento.');
 
       return;
     }
@@ -186,6 +193,8 @@ export const SchedulingDetails = () => {
           title="Alugar agora"
           color={colors.success} 
           onPress={handleConfirmRental}
+          enabled={!loading}
+          loading={loading}
         />
       </Footer>
     </Container>

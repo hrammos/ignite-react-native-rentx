@@ -7,6 +7,7 @@ import {
   SchedulingComplete,
   SchedulingDetails,
   MyCars,
+  Splash,
 } from '../screens';
 
 const { Navigator, Screen } = createStackNavigator();
@@ -16,8 +17,13 @@ export const StackRoutes = () => {
   return (
     <Navigator 
       screenOptions={{ headerShown: false }} 
-      initialRouteName="Home"
+      initialRouteName="Splash"
     >
+      <Screen 
+        name="Splash" 
+        component={Splash}
+      />
+      
       <Screen 
         name="Home" 
         component={Home}

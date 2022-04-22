@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StatusBar, StyleSheet } from 'react-native';
+import { StatusBar, StyleSheet, BackHandler } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import Animated, {
   useSharedValue,
@@ -34,7 +34,7 @@ const ButtonAnimated = Animated.createAnimatedComponent(RectButton);
 
 export const Home = () => {
   const [cars, setCars] = useState<ICarDTO[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const positionY = useSharedValue(0);
   const positionX = useSharedValue(0);
@@ -79,11 +79,15 @@ export const Home = () => {
       } catch (error) {
         console.error(error);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
     fetchCars();
+  }, []);
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => (true));
   }, []);
    
   return (
@@ -101,13 +105,15 @@ export const Home = () => {
             height={RFValue(12)}
           />
 
-          <TotalCars>
-            {`Total de ${cars.length} carros`}
-          </TotalCars>
+          {!isLoading && (
+            <TotalCars>
+              {`Total de ${cars.length} carros`}
+            </TotalCars>
+          )}
         </HeaderContent>
       </Header>
 
-      {loading ? <Loading /> : (
+      {isLoading ? <Loading /> : (
         <CarList 
           data={cars}
           keyExtractor={item=> item.id}

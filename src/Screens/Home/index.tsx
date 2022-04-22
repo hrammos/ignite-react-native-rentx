@@ -18,7 +18,7 @@ import { RectButton, PanGestureHandler } from 'react-native-gesture-handler';
 import { useTheme } from 'styled-components';
 
 import Logo from '../../assets/logo.svg';
-import { Car, Loading } from '../../components';
+import { Car, LoadingAnimation } from '../../components';
 import { api } from '../../services/api';
 import { ICarDTO } from '../../dtos/CarDTO'
 
@@ -113,7 +113,7 @@ export const Home = () => {
         </HeaderContent>
       </Header>
 
-      {isLoading ? <Loading /> : (
+      {isLoading ? <LoadingAnimation /> : (
         <CarList 
           data={cars}
           keyExtractor={item=> item.id}

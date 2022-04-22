@@ -6,3 +6,4 @@ export { Button } from './Button';
 export { Calendar } from './Calendar';
 export { ConfirmButton } from './ConfirmButton';
 export { Loading } from './Loading';
+export { LoadingAnimation } from './LoadingAnimation';

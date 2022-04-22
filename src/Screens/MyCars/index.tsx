@@ -11,7 +11,7 @@ import { ICarDTO } from '../../dtos/CarDTO';
 import { api } from '../../services/api';
 
 import { 
-  Loading, 
+  LoadingAnimation, 
   BackButton, 
   Car,
 } from '../../components';
@@ -42,7 +42,7 @@ type TCars = {
 
 export const MyCars = () => {
   const [cars, setCars] = useState<TCars[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const navigation: NavigationProp<ParamListBase> = useNavigation();
   const { colors } = useTheme();
@@ -58,7 +58,7 @@ export const MyCars = () => {
       } catch (error) {
         console.error(error);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
@@ -88,7 +88,7 @@ export const MyCars = () => {
         <SubTitle>Conforto, segurança e praticidade.</SubTitle>
       </Header>
 
-      {loading ? <Loading /> : (
+      {isLoading ? <LoadingAnimation /> : (
         <Content>
           <Appointments>
             <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>

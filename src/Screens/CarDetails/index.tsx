@@ -164,6 +164,6 @@ const styles = StyleSheet.create({
   header: {
     position: 'absolute',
     overflow: 'hidden',
-    zIndex: 50,
+    zIndex: 1,
   },
 })

@@ -8,8 +8,9 @@ import { Container, Title } from './styles';
 type TProps = RectButtonProps & {
   title: string;
   color?: string;
-  enabled?: boolean
-  loading?: boolean
+  enabled?: boolean;
+  loading?: boolean;
+  light?: boolean;
 };
 
 export const Button = (props: TProps) => {
@@ -18,6 +19,7 @@ export const Button = (props: TProps) => {
     color, 
     enabled = true,
     loading = false,
+    light = false,
     ...rest
   } = props;
 
@@ -34,7 +36,7 @@ export const Button = (props: TProps) => {
     >
       {loading 
         ? <ActivityIndicator color={colors.shape}/>
-        : <Title>{title}</Title>
+        : <Title light={light} >{title}</Title>
       }
     </Container>
   );
